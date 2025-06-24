@@ -7,25 +7,30 @@ function NewAppointment(){
 
     const navigate = useNavigate()
 
-    function createPost(appointment){
+    function createPost(appointment) {
+        const { id, ...cleanAppointment } = appointment; 
 
-        appointment.cost = 0
-        appointment.service = []
+        cleanAppointment.petId = Number(cleanAppointment.petId);
+        cleanAppointment.serviceId = Number(cleanAppointment.serviceId);
 
-        fetch("http://localhost:5000/appointments", {
+
+        fetch('http://localhost:5000/appointments', {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json',
+            'Content-type': 'application/json',
             },
-            body: JSON.stringify(appointment) 
+            body: JSON.stringify(cleanAppointment),
         })
-        .then((resp) => resp.json()) // Primeiro `.then()` processa a resposta
-        .then((data) => { // Segundo `.then()` trata os dados
+            .then((resp) => resp.json())
+            .then((data) => {
             console.log(data);
-            navigate('/appointments', { state: { message: 'Projeto criado com sucesso!' } });
-        })
-        .catch(err => console.log(err)); // Captura erros
+            navigate('/appointments', {
+                state: { message: 'Consulta criada com sucesso!' },
+            });
+            })
+            .catch((err) => console.log(err));
     }
+
 
     return (
         <div className={styles.newappointment_container}>

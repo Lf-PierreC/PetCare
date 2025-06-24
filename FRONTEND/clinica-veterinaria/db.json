@@ -1,0 +1,44 @@
+{
+  "appointments": [
+    {
+      "id": "4894",
+      "date": "2025-06-20T21:08",
+      "serviceId": 2,
+      "petId": 2
+    },
+    {
+      "id": "5e83",
+      "date": "2025-06-03T23:20",
+      "serviceId": 2,
+      "petId": 1
+    }
+  ],
+  "pets": [
+    {
+      "id": "1",
+      "name": "Rex"
+    },
+    {
+      "id": "2",
+      "name": "Luna"
+    },
+    {
+      "id": "3",
+      "name": "Bolinha"
+    }
+  ],
+  "services": [
+    {
+      "id": "1",
+      "name": "Consulta Geral"
+    },
+    {
+      "id": "2",
+      "name": "Vacinação"
+    },
+    {
+      "id": "3",
+      "name": "Banho e Tosa"
+    }
+  ]
+}

@@ -10,7 +10,7 @@ function Navbar() {
         <nav className={styles.navbar}>
             <Container>
                 <Link>
-                    <img src={logo} alt='Costs' width='100px'/>
+                    <img src={logo} alt='PetCare' width='100px'/>
                 </Link>
                 <ul className={styles.list}>
                     <li className={styles.item}>
@@ -20,10 +20,7 @@ function Navbar() {
                         <Link to="/appointment">Consultas</Link>
                     </li>
                     <li className={styles.item}>
-                        <Link to="/contact">Contato</Link>
-                    </li>
-                    <li className={styles.item}>
-                        <Link to="/company">Empresa</Link>
+                        <Link to="/customer">Clientes</Link>
                     </li>
                     <li className={styles.item}>
                         <Link to="/newappointment">Nova Consulta</Link>
