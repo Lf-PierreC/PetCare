@@ -23,8 +23,8 @@ function App() {
             <Route path="/newappointment" element={<NewAppointment/>} />
             <Route path="/editappointment/:id" element={<EditAppointment />} />
             <Route path="/customers" element={<Customer />} />
-            <Route path="/newcustomer" element={<NewCustomer />} />
-            <Route path="/editcustomer/:id" element={<EditCustomer />} />
+            <Route path="/newcustomers" element={<NewCustomer />} />
+            <Route path="/editcustomers/:id" element={<EditCustomer />} />
           </Routes>
         </Container>
         <Footer />

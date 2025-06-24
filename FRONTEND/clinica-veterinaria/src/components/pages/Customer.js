@@ -12,9 +12,10 @@ function Customer() {
   useEffect(() => {
     fetch('http://localhost:5000/customers')
       .then(res => res.json())
-      .then(json => setCustomers(json.data))
+      .then(json => setCustomers(json)) // ← aqui
       .catch(console.error);
   }, []);
+
 
   const removeCustomer = (id) => {
     fetch(`http://localhost:5000/customers/${id}`, {
@@ -32,7 +33,7 @@ function Customer() {
     <div className={styles.customer_container}>
       <div className={styles.title_container}>
         <h1>Clientes</h1>
-        <LinkButton to="/newcustomer" text="Cadastrar Cliente" />
+        <LinkButton to="/newcustomers" text="Cadastrar Cliente" />
       </div>
       {message && <Message type="success" msg={message} />}
       <Container customClass="start">

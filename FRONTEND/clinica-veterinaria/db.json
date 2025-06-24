@@ -1,4 +1,30 @@
 {
+  "customers": [
+    {
+      "id": "1",
+      "name": "Ana Beatriz Silva",
+      "phone": "11987654323",
+      "createdAt": "2025-06-20T14:00:00"
+    },
+    {
+      "id": "2",
+      "name": "Luiz Felipe Pierre",
+      "phone": "11911112222",
+      "createdAt": "2025-06-19T16:22:06"
+    },
+    {
+      "id": "3",
+      "name": "Carlos Gonçalves",
+      "phone": "11912345678",
+      "createdAt": "2025-06-19T16:27:03"
+    },
+    {
+      "id": "7b0f",
+      "name": "Luiz Felipe",
+      "phone": "(11) 94934-6544",
+      "createdAt": "2025-06-24T23:38:14.884Z"
+    }
+  ],
   "appointments": [
     {
       "id": "4894",

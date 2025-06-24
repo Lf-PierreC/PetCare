@@ -11,7 +11,7 @@ function EditCustomer() {
   useEffect(() => {
     fetch(`http://localhost:5000/customers/${id}`)
       .then(res => res.json())
-      .then(json => setCustomer(json.data))
+      .then(json => setCustomer(json))
       .catch(console.error);
   }, [id]);
 
@@ -23,7 +23,7 @@ function EditCustomer() {
     })
       .then(res => res.json())
       .then(data => {
-        navigate('/customers', { state: { message: 'Cliente atualizado com sucesso!' } });
+        navigate('/customer', { state: { message: 'Cliente atualizado com sucesso!' } });
       })
       .catch(console.error);
   };

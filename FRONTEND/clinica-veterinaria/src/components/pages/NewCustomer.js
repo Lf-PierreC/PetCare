@@ -6,20 +6,27 @@ function NewCustomer() {
   const navigate = useNavigate();
 
   const createCustomer = (customer) => {
+    // Corrigir o endpoint: era 'customer', mas o seu db.json usa 'customers'
     fetch('http://localhost:5000/customers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(customer),
+      body: JSON.stringify({
+        ...customer,
+        createdAt: new Date().toISOString(), // adiciona o campo criado em
+      }),
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.code === 200) {
-          navigate('/customers', { state: { message: 'Cliente criado com sucesso!' } });
-        } else {
-          alert(data.message);
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Erro ao criar cliente');
         }
+        return res.json();
       })
-      .catch(console.error);
+      .then(() => {
+        navigate('/customers', { state: { message: 'Cliente criado com sucesso!' } });
+      })
+      .catch(err => {
+        alert(err.message); // Mostra erro real
+      });
   };
 
   return (

@@ -11,7 +11,7 @@ function CustomerCard({ id, name, phone, createdAt, handleRemove }) {
       <p><span>Criado em:</span> {new Date(createdAt).toLocaleString()}</p>
 
       <div className={styles.customer_card_actions}>
-        <Link to={`/editcustomer/${id}`}>
+        <Link to={`/editcustomers/${id}`}>
           <BsPencil /> Editar
         </Link>
         <button onClick={() => handleRemove(id)}>
