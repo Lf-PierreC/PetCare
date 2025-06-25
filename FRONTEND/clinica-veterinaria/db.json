@@ -25,6 +25,23 @@
       "createdAt": "2025-06-24T23:38:14.884Z"
     }
   ],
+  "veterinarians": [
+    {
+      "id": 1,
+      "name": "Ana Beatriz Silva",
+      "phone": "11987654323",
+      "crmv": "SP12345",
+      "createdAt": "2025-06-20T14:00:00"
+    },
+    {
+      "id": 2,
+      "name": "Ricardo Lima",
+      "phone": "11990001111",
+      "crmv": "SP67890",
+      "createdAt": "2025-06-22T09:45:00"
+    }
+  ],
+
   "appointments": [
     {
       "id": "4894",

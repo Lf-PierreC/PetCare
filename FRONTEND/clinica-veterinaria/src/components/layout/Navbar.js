@@ -23,6 +23,9 @@ function Navbar() {
                         <Link to="/customers">Clientes</Link>
                     </li>
                     <li className={styles.item}>
+                        <Link to="/veterinarians">Veterináriosc</Link>
+                    </li>
+                    <li className={styles.item}>
                         <Link to="/newappointment">Nova Consulta</Link>
                     </li>
                 </ul>
