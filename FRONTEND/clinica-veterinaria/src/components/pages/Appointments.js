@@ -25,19 +25,19 @@ function Appointments() {
       fetch('http://localhost:5000/appointments').then(res => res.json()),
       fetch('http://localhost:5000/pets').then(res => res.json()),
       fetch('http://localhost:5000/services').then(res => res.json()),
+      fetch('http://localhost:5000/veterinarians').then(res => res.json()),
     ])
-      .then(([apptData, petsData, servicesData]) => {
-        setPets(petsData);
-        setServices(servicesData);
-
+      .then(([apptData, petsData, servicesData, vetsData]) => {
         const formatted = apptData.map(appt => {
           const pet = petsData.find(p => Number(p.id) === Number(appt.petId));
           const service = servicesData.find(s => Number(s.id) === Number(appt.serviceId));
+          const vet = vetsData.find(v => Number(v.id) === Number(appt.veterinarianId));
 
           return {
             ...appt,
             petName: pet ? pet.name : 'Pet não encontrado',
             serviceName: service ? service.name : 'Serviço não encontrado',
+            veterinarianName: vet ? vet.name : 'Veterinário não encontrado',
           };
         });
 
@@ -53,22 +53,21 @@ function Appointments() {
 
   // Remove e atualiza a lista
   function removeAppointment(id) {
-    const numericId = Number(id);
-    fetch(`http://localhost:5000/appointments/${numericId}`, {
-      method: 'DELETE',
+  fetch(`http://localhost:5000/appointments/${id}`, {
+    method: 'DELETE',
+  })
+    .then((resp) => {
+      if (!resp.ok) throw new Error('Erro ao deletar');
+      fetchAppointments();
     })
-      .then((resp) => {
-        if (!resp.ok) throw new Error('Erro ao deletar');
-        fetchAppointments(); // atualiza lista após exclusão
-      })
-      .catch(console.error);
-  }
+    .catch(console.error);
+}
 
   return (
     <div className={styles.appointment_container}>
       <div className={styles.title_container}>
         <h1>Minhas Consultas</h1>
-        <LinkButton to="/newappointment" text="Agendar Consulta" />
+        <LinkButton to="/newappointments" text="Agendar Consulta" />
       </div>
       {message && <Message type="success" msg={message} />}
       <Container customClass="start">
@@ -80,6 +79,7 @@ function Appointments() {
               date={appointment.date}
               petName={appointment.petName}
               serviceName={appointment.serviceName}
+              veterinarianName={appointment.veterinarianName}
               handleRemove={removeAppointment}
             />
           ))}

@@ -23,7 +23,7 @@ function EditCustomer() {
     })
       .then(res => res.json())
       .then(data => {
-        navigate('/customer', { state: { message: 'Cliente atualizado com sucesso!' } });
+        navigate('/customers', { state: { message: 'Cliente atualizado com sucesso!' } });
       })
       .catch(console.error);
   };

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import VeterinarianCard from '../Veterinarian/VeterinarianCard';
 import Message from '../layout/Message';
 import Container from '../layout/Container';
@@ -8,13 +9,19 @@ import styles from './Veterinarian.module.css';
 function Veterinarian() {
   const [veterinarians, setVeterinarians] = useState([]);
   const [message, setMessage] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
+    if (location.state?.message) {
+      setMessage(location.state.message);
+      window.history.replaceState({}, document.title);
+    }
+
     fetch('http://localhost:5000/veterinarians')
       .then(res => res.json())
       .then(json => setVeterinarians(json))
       .catch(console.error);
-  }, []);
+  }, [location.state]);
 
   const removeVeterinarian = (id) => {
     fetch(`http://localhost:5000/veterinarians/${id}`, {

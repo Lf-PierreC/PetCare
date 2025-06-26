@@ -9,6 +9,7 @@ function AppointmentForm({ handleSubmit, btnText, appointmentData }) {
   const [appointment, setAppointment] = useState({});
   const [services, setServices] = useState([]);
   const [pets, setPets] = useState([]);
+  const [veterinarians, setVeterinarians] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:5000/services')
@@ -19,6 +20,10 @@ function AppointmentForm({ handleSubmit, btnText, appointmentData }) {
     fetch('http://localhost:5000/pets')
       .then((res) => res.json())
       .then((data) => setPets(data))
+      .catch((err) => console.error(err));
+    fetch('http://localhost:5000/veterinarians')
+      .then((res) => res.json())
+      .then((data) => setVeterinarians(data))
       .catch((err) => console.error(err));
   }, []);
 
@@ -66,6 +71,13 @@ function AppointmentForm({ handleSubmit, btnText, appointmentData }) {
         options={pets}
         handleOnChange={handleChange}
         value={appointment.petId || ''}
+      />
+      <Select
+        name="veterinarianId"
+        text="Selecione o veterinário"
+        options={veterinarians}
+        handleOnChange={handleChange}
+        value={appointment.veterinarianId || ''}
       />
 
       <SubmitButton text={btnText} />

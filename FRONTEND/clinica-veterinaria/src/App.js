@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Appointments from './components/pages/Appointments'
 import NewAppointment from './components/pages/NewAppointment';
-import EditAppointment from './components/appointment/EditAppointment';
+import EditAppointment from './components/pages/EditAppointment';
 import Customer from './components/pages/Customer';
 import NewCustomer from './components/pages/NewCustomer';
 import EditCustomer from './components/pages/EditCustomer';
@@ -22,9 +22,9 @@ function App() {
         <Container customClass="min-height">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/appointment" element={<Appointments/>} />
-            <Route path="/newappointment" element={<NewAppointment/>} />
-            <Route path="/editappointment/:id" element={<EditAppointment />} />
+            <Route path="/appointments" element={<Appointments/>} />
+            <Route path="/newappointments" element={<NewAppointment/>} />
+            <Route path="/editappointments/:id" element={<EditAppointment />} />
             <Route path="/customers" element={<Customer />} />
             <Route path="/newcustomers" element={<NewCustomer />} />
             <Route path="/editcustomers/:id" element={<EditCustomer />} />

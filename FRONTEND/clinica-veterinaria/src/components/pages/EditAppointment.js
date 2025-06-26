@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import AppointmentForm from '../appointment/AppointmentForm';
-import styles from '../pages/NewAppointment.module.css';
+import styles from './NewAppointment.module.css';
 
 function EditAppointment() {
   const { id } = useParams();
