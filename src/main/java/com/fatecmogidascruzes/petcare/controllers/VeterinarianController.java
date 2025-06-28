@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fatecmogidascruzes.petcare.dtos.Veterinarian.VeterinarianRequestDTO;
 import com.fatecmogidascruzes.petcare.dtos.Veterinarian.VeterinarianResponseDTO;
-import com.fatecmogidascruzes.petcare.repositories.VeterinarianRepository;
 import com.fatecmogidascruzes.petcare.responses.ApiResponse;
 import com.fatecmogidascruzes.petcare.services.VeterinarianService;
 
@@ -24,7 +23,7 @@ public class VeterinarianController
 {
     private VeterinarianService veterinarianService;
 
-    public VeterinarianController (VeterinarianService veterinarianService, VeterinarianRepository repository)
+    public VeterinarianController (VeterinarianService veterinarianService)
     {
         this.veterinarianService = veterinarianService;
     }
