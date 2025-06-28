@@ -13,6 +13,7 @@ public class PetResponseDTO {
     private String name;
     private LocalDate birth;
     private String breed;
+    private String species;
     private String sex;
     private String size;
     private Float weight;

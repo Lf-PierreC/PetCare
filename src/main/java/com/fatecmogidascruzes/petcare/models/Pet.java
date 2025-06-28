@@ -28,9 +28,10 @@ public class Pet {
     private LocalDate birth;
     private Float weight;
     private String color;
+    private String breed;
 
     @ManyToOne
-    private Breed breed;
+    private Species species;
 
     @ManyToOne
     private Sex sex;

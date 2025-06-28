@@ -27,7 +27,7 @@ public class Species {
     private String name;
 
     @OneToMany
-    private List<Breed> breeds;
+    private List<Pet> pets;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

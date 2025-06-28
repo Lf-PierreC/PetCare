@@ -9,12 +9,12 @@ import com.fatecmogidascruzes.petcare.dtos.Pet.PetRequestDTO;
 import com.fatecmogidascruzes.petcare.dtos.Pet.PetResponseDTO;
 import com.fatecmogidascruzes.petcare.exceptions.ResourceNotFoundException;
 import com.fatecmogidascruzes.petcare.mappers.PetMapper;
-import com.fatecmogidascruzes.petcare.models.Breed;
+import com.fatecmogidascruzes.petcare.models.Species;
 import com.fatecmogidascruzes.petcare.models.Customer;
 import com.fatecmogidascruzes.petcare.models.Pet;
 import com.fatecmogidascruzes.petcare.models.Sex;
 import com.fatecmogidascruzes.petcare.models.Size;
-import com.fatecmogidascruzes.petcare.repositories.BreedRepository;
+import com.fatecmogidascruzes.petcare.repositories.SpeciesRepository;
 import com.fatecmogidascruzes.petcare.repositories.CustomerRepository;
 import com.fatecmogidascruzes.petcare.repositories.PetRepository;
 import com.fatecmogidascruzes.petcare.repositories.SexRepository;
@@ -25,16 +25,16 @@ import com.fatecmogidascruzes.petcare.validators.PetValidator;
 public class PetService {
     private PetRepository petRepository;
     private PetValidator petValidator;
-    private BreedRepository breedRepository;
+    private SpeciesRepository speciesRepository;
     private SexRepository sexRepository;
     private SizeRepository sizeRepository;
     private CustomerRepository customerRepository;
 
-    public PetService (PetRepository petRepository, PetValidator petValidator, BreedRepository breedRepository, SexRepository sexRepository, SizeRepository sizeRepository, CustomerRepository customerRepository)
+    public PetService (PetRepository petRepository, PetValidator petValidator, SpeciesRepository speciesRepository, SexRepository sexRepository, SizeRepository sizeRepository, CustomerRepository customerRepository)
     {
         this.petRepository = petRepository;
         this.petValidator = petValidator;
-        this.breedRepository = breedRepository;
+        this.speciesRepository = speciesRepository;
         this.sexRepository = sexRepository;
         this.sizeRepository = sizeRepository;
         this.customerRepository = customerRepository;
@@ -65,12 +65,12 @@ public class PetService {
     {
         this.petValidator.validate(petRequestDTO);
 
-        Breed breed = this.breedRepository.findById(petRequestDTO.getBreedId()).orElseThrow();
+        Species species = this.speciesRepository.findById(petRequestDTO.getSpeciesId()).orElseThrow();
         Sex sex = this.sexRepository.findById(petRequestDTO.getSexId()).orElseThrow();
         Size size = this.sizeRepository.findById(petRequestDTO.getSizeId()).orElseThrow();
         Customer customer = this.customerRepository.findById(petRequestDTO.getCustomerId()).orElseThrow();
 
-        Pet pet = PetMapper.toEntity(petRequestDTO, breed, sex, size, customer);
+        Pet pet = PetMapper.toEntity(petRequestDTO, species, sex, size, customer);
 
         this.petRepository.save(pet);
 
@@ -85,7 +85,7 @@ public class PetService {
 
         Pet pet = this.petRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pet não encontrado"));
 
-        Breed breed = this.breedRepository.findById(petRequestDTO.getBreedId()).orElseThrow();
+        Species species = this.speciesRepository.findById(petRequestDTO.getSpeciesId()).orElseThrow();
         Sex sex = this.sexRepository.findById(petRequestDTO.getSexId()).orElseThrow();
         Size size = this.sizeRepository.findById(petRequestDTO.getSizeId()).orElseThrow();
         Customer customer = this.customerRepository.findById(petRequestDTO.getCustomerId()).orElseThrow();
@@ -94,7 +94,8 @@ public class PetService {
         pet.setBirth(petRequestDTO.getBirth());
         pet.setWeight(petRequestDTO.getWeight());
         pet.setColor(petRequestDTO.getColor());
-        pet.setBreed(breed);
+        pet.setBreed(petRequestDTO.getBreed());
+        pet.setSpecies(species);
         pet.setSex(sex);
         pet.setSize(size);
         pet.setCustomer(customer);

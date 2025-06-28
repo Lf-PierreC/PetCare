@@ -10,7 +10,8 @@ import lombok.Setter;
 public class PetRequestDTO {
     private String name;
     private LocalDate birth;
-    private Long breedId;
+    private String speciesRepository;
+    private Long speciesId;
     private Long sexId;
     private Long sizeId;
     private Float weight;

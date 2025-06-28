@@ -10,21 +10,21 @@ import org.springframework.stereotype.Component;
 
 import com.fatecmogidascruzes.petcare.dtos.Pet.PetRequestDTO;
 import com.fatecmogidascruzes.petcare.exceptions.ValidationException;
-import com.fatecmogidascruzes.petcare.repositories.BreedRepository;
+import com.fatecmogidascruzes.petcare.repositories.SpeciesRepository;
 import com.fatecmogidascruzes.petcare.repositories.CustomerRepository;
 import com.fatecmogidascruzes.petcare.repositories.SexRepository;
 import com.fatecmogidascruzes.petcare.repositories.SizeRepository;
 
 @Component
 public class PetValidator {
-    private BreedRepository breedRepository;
+    private SpeciesRepository speciesRepository;
     private SexRepository sexRepository;
     private SizeRepository sizeRepository;
     private CustomerRepository customerRepository;
 
-    public PetValidator (BreedRepository breedRepository, SexRepository sexRepository, SizeRepository sizeRepository, CustomerRepository customerRepository)
+    public PetValidator (SpeciesRepository speciesRepository, SexRepository sexRepository, SizeRepository sizeRepository, CustomerRepository customerRepository)
     {
-        this.breedRepository = breedRepository;
+        this.speciesRepository = speciesRepository;
         this.sexRepository = sexRepository;
         this.sizeRepository = sizeRepository;
         this.customerRepository = customerRepository;
@@ -47,12 +47,16 @@ public class PetValidator {
             this.add(errors, "birth", "O nascimento não pode ser no futuro");
         }
 
-        if (dto.getBreedId() == null) {
+        if (dto.getBreed().isEmpty()) {
             this.add(errors, "breed", "A raça deve ser informada");
         }
 
-        if (!this.breedRepository.existsById(dto.getBreedId())) {
-            this.add(errors, "breed", "Raça inválida");
+        if (dto.getSpeciesId() == null) {
+            this.add(errors, "species", "A espécie deve ser informada");
+        }
+
+        if (!this.speciesRepository.existsById(dto.getSpeciesId())) {
+            this.add(errors, "species", "Espécie inválida");
         }
 
         if (dto.getSexId() == null) {
