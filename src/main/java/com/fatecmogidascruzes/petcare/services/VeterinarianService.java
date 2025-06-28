@@ -54,8 +54,6 @@ public class VeterinarianService {
 
         Veterinarian veterinarian = VeterinarianMapper.toEntity(veterinarianRequestDTO);
         User user = veterinarian.getUser();
- 
-        System.out.println(user.getName());
 
         this.userRepository.save(user);
         this.veterinarianRepository.save(veterinarian);
