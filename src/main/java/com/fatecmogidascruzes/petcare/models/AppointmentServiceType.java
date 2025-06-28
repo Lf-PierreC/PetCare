@@ -1,6 +1,7 @@
 package com.fatecmogidascruzes.petcare.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -9,36 +10,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "appointments")
+@Table(name = "appointments_services_types")
 @Getter
 @Setter
-public class Appointment {
+public class AppointmentServiceType {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime date;
+    private String name;
 
-    @ManyToOne
-    private Pet pet;
-
-    @ManyToOne
-    private Veterinarian veterinarian;
-
-    @ManyToOne
-    @JoinColumn(name = "appointment_status_id")
-    private AppointmentStatus status;
-
-    @ManyToOne
-    @JoinColumn(name = "appointment_service_type_id")
-    private AppointmentServiceType service;
+    @OneToMany(mappedBy = "service")
+    private List<Appointment> appointments;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

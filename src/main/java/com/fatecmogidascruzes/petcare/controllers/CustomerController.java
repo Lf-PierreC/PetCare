@@ -20,52 +20,45 @@ import com.fatecmogidascruzes.petcare.services.CustomerService;
 
 @RestController
 @RequestMapping("/customers")
-public class CustomerController
-{
-    private CustomerService customerService;
+public class CustomerController {
+	private CustomerService customerService;
 
-    public CustomerController (CustomerService customerService, CustomerRepository repository)
-    {
-        this.customerService = customerService;
-    }
+	public CustomerController(CustomerService customerService, CustomerRepository repository) {
+		this.customerService = customerService;
+	}
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<CustomerResponseDTO>>> index ()
-    {
-        List<CustomerResponseDTO> customers = this.customerService.index();
-        ApiResponse<List<CustomerResponseDTO>> output = new ApiResponse<>(200, "Clientes encontrados", customers);
+	@GetMapping
+	public ResponseEntity<ApiResponse<List<CustomerResponseDTO>>> index() {
+		List<CustomerResponseDTO> customers = this.customerService.index();
+		ApiResponse<List<CustomerResponseDTO>> output = new ApiResponse<>(200, "Clientes encontrados", customers);
 
-        return ResponseEntity.ok(output);
-    }
+		return ResponseEntity.ok(output);
+	}
 
-    @GetMapping("{id}")
-    public ApiResponse<CustomerResponseDTO> show (@PathVariable Long id)
-    {
-        CustomerResponseDTO customer = this.customerService.show(id);
-        ApiResponse<CustomerResponseDTO> output = new ApiResponse<>(200, "Cliente encontrado", customer);
+	@GetMapping("{id}")
+	public ApiResponse<CustomerResponseDTO> show(@PathVariable Long id) {
+		CustomerResponseDTO customer = this.customerService.show(id);
+		ApiResponse<CustomerResponseDTO> output = new ApiResponse<>(200, "Cliente encontrado", customer);
 
-        return output;
-    }
+		return output;
+	}
 
-    @PostMapping
-    public CustomerResponseDTO store (@RequestBody CustomerRequestDTO customerRequestDTO)
-    {
-        CustomerResponseDTO output = this.customerService.store(customerRequestDTO);
+	@PostMapping
+	public CustomerResponseDTO store(@RequestBody CustomerRequestDTO customerRequestDTO) {
+		CustomerResponseDTO output = this.customerService.store(customerRequestDTO);
 
-        return output;
-    }
+		return output;
+	}
 
-    @PutMapping("{id}")
-    public CustomerResponseDTO update (@PathVariable Long id, @RequestBody CustomerRequestDTO customerRequestDTO)
-    {
-        CustomerResponseDTO output = this.customerService.update(id, customerRequestDTO);
+	@PutMapping("{id}")
+	public CustomerResponseDTO update(@PathVariable Long id, @RequestBody CustomerRequestDTO customerRequestDTO) {
+		CustomerResponseDTO output = this.customerService.update(id, customerRequestDTO);
 
-        return output;
-    }
+		return output;
+	}
 
-    @DeleteMapping("{id}")
-    public void delete (@PathVariable Long id)
-    {
-        this.customerService.delete(id);
-    }
+	@DeleteMapping("{id}")
+	public void delete(@PathVariable Long id) {
+		this.customerService.delete(id);
+	}
 }

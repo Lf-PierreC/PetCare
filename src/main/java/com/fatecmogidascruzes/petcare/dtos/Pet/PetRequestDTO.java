@@ -11,6 +11,7 @@ public class PetRequestDTO {
     private String name;
     private LocalDate birth;
     private String speciesRepository;
+    private String breed;
     private Long speciesId;
     private Long sexId;
     private Long sizeId;
